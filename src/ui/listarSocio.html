@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Socios</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            background-color: #4a90e2;
+            color: white;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Socios</h1>
+        <table id="sociosTable">
+            <thead>
+                <tr>
+                    <th>ID Socio</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>DNI</th>
+                    <th>Localidad</th>
+                    <th>Módulo</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="sociosBody">
+                <!-- Los datos de los socios se insertarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            ipcRenderer.invoke('get-socio').then((socios) => {
+                const sociosBody = document.getElementById('sociosBody');
+                socios.forEach(socio => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${socio.id_socio}</td>
+                        <td>${socio.nombres}</td>
+                        <td>${socio.apellidos}</td>
+                        <td>${socio.dni}</td>
+                        <td>${socio.id_localidad}</td>
+                        <td>${socio.id_modulo}</td>
+                        <td><button onclick="seleccionarSocio(${JSON.stringify(socio).replace(/"/g, '&quot;')})">Seleccionar</button></td>
+                    `;
+                    sociosBody.appendChild(row);
+                });
+            });
+        });
+
+        function seleccionarSocio(socio) {
+            ipcRenderer.send('socio-selected', socio);
+            window.close();
+        }
+    </script>
+</body>
+</html>

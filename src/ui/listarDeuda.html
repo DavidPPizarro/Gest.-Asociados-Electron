@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Deudas de Socio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            background-color: #4a90e2;
+            color: white;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        .fecha-vencida {
+            color: red;
+        }
+        .fecha-vigente {
+            color: green;
+        }
+        .pagado{
+            color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deudas del Socio</h1>
+        <table id="deudasTable">
+            <thead>
+                <tr>
+                    <th>ID Deuda</th>
+                    <th>Estado</th>
+                    <th>Fecha Límite</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="deudasBody">
+                <!-- Los datos de las deudas se insertarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        document.addEventListener('DOMContentLoaded', () => {
+            ipcRenderer.on('socio-id', (event, idSocio) => {
+                ipcRenderer.invoke('get-deudas-socio', idSocio).then((deudas) => {
+                    const deudasBody = document.getElementById('deudasBody');
+                    deudasBody.innerHTML = '';
+                    deudas.forEach(deuda => {
+                        const row = document.createElement('tr');
+                        const fechaLimite = new Date(deuda.fecha_vencimiento);
+                        const hoy = new Date();
+                        let fechaClase = '';
+                        if (deuda.estado !== 'cancelado') {
+                            fechaClase = fechaLimite < hoy ? 'fecha-vencida' : 'fecha-vigente';
+                        }
+                        if (deuda.estado == 'cancelado') {
+                            fechaClase = 'pagado';
+                        }
+                        const fechaFormateada = fechaLimite.toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        row.innerHTML = `
+                            <td>${deuda.id_deuda}</td>
+                            <td>${deuda.estado}</td>
+                            <td class="${fechaClase}">${fechaFormateada}</td>
+                            <td><button onclick="seleccionarDeuda(${JSON.stringify(deuda).replace(/"/g, '&quot;')})">Seleccionar</button></td>
+                        `;
+                        deudasBody.appendChild(row);
+                    });
+                });
+            });
+        });
+
+        function seleccionarDeuda(deuda) {
+            console.log(deuda);
+            ipcRenderer.send('deuda-selected', deuda);
+            window.close();
+        }
+    </script>
+</body>
+</html>

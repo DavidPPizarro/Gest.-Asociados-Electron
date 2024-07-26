@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Usuario</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: 500;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        #cancelar {
+            background-color: #e74c3c;
+            margin-top: 20px;
+        }
+        #cancelar:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Usuario</h2>
+        <form id="formularioEditarUsuario">
+            <input type="hidden" id="id_user">
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" required>
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" required>
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" required>
+            <label for="contrasena">Contraseña:</label>
+            <input type="text" id="contrasena" required>
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" required>
+            <label for="rol">Rol:</label>
+            <select id="rol" required></select>
+            <button type="submit">Confirmar Actualización</button>
+            <button type="button" id="cancelar">Cancelar</button>
+        </form>
+    </div>
+    <script src="../controllers/editarUsuario.js"></script>
+</body>
+</html>

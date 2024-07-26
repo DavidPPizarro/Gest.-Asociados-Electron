@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check your inbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            padding: 10px;
+            display: none;
+        }
+
+        .code-inputs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .code-inputs input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #verifyButton {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        #verifyButton:hover {
+            background-color: #333;
+        }
+
+        .resend-link {
+            margin-top: 20px;
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .spam-note {
+            color: #999;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">        
+        <h2>Revisa tu correo</h2>
+        <p>Hemos enviado un enlace mágico a su correo electrónico para su verificación. Utilice el enlace o ingrese el código de verificación en el correo electrónico para continuar.</p>
+        <div id="alert" class="alert"></div>
+        <div class="code-inputs">
+            <input type="text" maxlength="1" id="code1">
+            <input type="text" maxlength="1" id="code2">
+            <input type="text" maxlength="1" id="code3">
+            <input type="text" maxlength="1" id="code4">
+            <input type="text" maxlength="1" id="code5">
+            <input type="text" maxlength="1" id="code6">
+        </div>
+        <button id="verifyButton">Continuar</button>
+        
+    </div>
+    <script src="../controllers/verifyCode.js"></script>
+</body>
+</html>

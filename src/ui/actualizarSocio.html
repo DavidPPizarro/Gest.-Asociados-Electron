@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Socio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        form {
+            display: grid;
+            gap: 15px;
+        }
+        label {
+            font-weight: 500;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        #botonCerrar {
+            background-color: #e74c3c;
+            margin-top: 20px;
+        }
+        #botonCerrar:hover {
+            background-color: #c0392b;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .pdf-icon {
+            color: #e74c3c;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .file-input-container {
+            display: flex;
+            align-items: center;
+        }
+        .file-input-container input[type="file"] {
+            display: none;
+        }
+        .file-input-container label {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Actualizar Socio</h1>
+        <form id="updateForm">
+            <input type="hidden" id="idSocio" name="idSocio">
+            
+            <label for="nombres">Nombres:</label>
+            <input type="text" id="nombres" name="nombres">
+            
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos">
+            
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni">
+            
+            <div class="form-group">
+                <label for="localidad">Localidad:</label>
+                <select id="localidad" name="localidad" required>
+                    <option value="1">Casa Blanca</option>
+                    <option value="2">Sacsamarca</option>
+                    <option value="3">Tarmatambo</option>
+                    <option value="4">Palca</option>
+                </select>
+            </div>
+            
+            <label for="id_modulo">ID Módulo:</label>
+            <input type="text" id="id_modulo" name="id_modulo">
+            
+            <div class="file-input-container">
+                <i class="fas fa-file-pdf pdf-icon" id="escritura_icon"></i>
+                <label for="ruta_escritura">Cambiar Escritura</label>
+                <input type="file" id="ruta_escritura" name="ruta_escritura" accept=".pdf">
+            </div>
+            
+            <div class="file-input-container">
+                <i class="fas fa-file-pdf pdf-icon" id="comprobante_icon"></i>
+                <label for="ruta_comprobante_inscr">Cambiar Comprobante Inscripción</label>
+                <input type="file" id="ruta_comprobante_inscr" name="ruta_comprobante_inscr" accept=".pdf">
+            </div>
+            
+            <button type="submit">Guardar Cambios</button>
+        </form>
+        <button id="botonCerrar">Cerrar</button>
+    </div>
+
+    <script src="../controllers/actualizarSocio.js"></script>
+</body>
+</html>

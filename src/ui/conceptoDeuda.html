@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Concepto de Deuda</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"] {
+            background-color: #4a90e2;
+            color: white;
+        }
+        button[type="submit"]:hover {
+            background-color: #357ae8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .action-button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+        .home-button {
+            background-color: #4a90e2;
+            color: white;
+            margin-top: 20px;
+        }
+        .home-button:hover {
+            background-color: #357ae8;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .alert-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .alert-box h3 {
+            margin-top: 0;
+            color: #4a90e2;
+        }
+
+        .alert-box button {
+            margin: 10px 5px 0;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .alert-box button:first-of-type {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .alert-box button:last-of-type {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .alert-box button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="home.html" class="back-button">Volver a Home</a>
+        <h2>Registrar Nuevo Concepto de Deuda</h2>
+        <form id="deudaForm">
+            <label for="monto">Monto:</label>
+            <input type="number" id="monto" step="0.01" required>
+
+            <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+            <input type="date" id="fechaVencimiento" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" rows="3" required></textarea>
+
+            <button type="submit">Registrar Deuda</button>
+        </form>
+
+        <h3>Deudas Registradas</h3>
+        <table id="deudasTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha Registro</th>
+                    <th>Fecha Vencimiento</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Las deudas se cargarán dinámicamente -->
+            </tbody>
+        </table>        
+    </div>
+
+    <script src="../controllers/gestionarConceptoD.js"></script>
+</body>
+</html>

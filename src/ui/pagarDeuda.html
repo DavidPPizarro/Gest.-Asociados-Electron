@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar Deuda</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .sections {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .section {
+            width: 48%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            background-color: #4a90e2;
+            color: white;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #357ae8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="home.html" class="back-button">Volver a Home</a>
+        <h1>Pagar Deuda</h1>        
+        <div class="sections">
+            <div class="section">
+                <h2>Datos de Socio</h2>
+                <button id="listarSocio">Listar Socio</button>
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" readonly required disabled>
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" readonly required disabled>
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" readonly required disabled>
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" readonly required disabled>
+            </div>
+            <div class="section">
+                <h2>Datos de Pago</h2>
+                <button id="listarDeuda">Listar Deuda de Socio</button>
+                <label for="codigoDeuda">Código deuda:</label>
+                <input type="text" id="codigoDeuda" readonly required disabled>
+                <label for="montoOriginal">Monto Original:</label>
+                <input type="text" id="montoOriginal" readonly required disabled>
+                <label for="fechaVencimiento">Fecha Vencimiento:</label>
+                <input type="text" id="fechaVencimiento" readonly required disabled>
+                <label for="montoTotal">Monto Total a Pagar:</label>
+                <input type="text" id="montoTotal" readonly required disabled>
+                <label for="nComprobante">N° comprobante:</label>
+                <input type="text" id="nComprobante" required>
+                <label for="comprobantePago">Comprobante de Pago (PDF):</label>
+                <input type="file" id="comprobantePago" name="comprobantePago" accept=".pdf" required>
+            </div>
+        </div>
+        <button id="guardar">Guardar</button>
+    </div>
+
+    <script src="../controllers/pagarDeuda.js"></script>
+</body>
+</html>

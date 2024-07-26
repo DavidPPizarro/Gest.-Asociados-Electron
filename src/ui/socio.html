@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="file"] {
+            border: none;
+            padding: 10px 0;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"] {
+            background-color: #4a90e2;
+            color: white;
+        }
+        button[type="submit"]:hover {
+            background-color: #357abd;
+        }
+        button[type="button"] {
+            background-color: #e74c3c;
+            color: white;
+        }
+        button[type="button"]:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulario de Datos Personales</h2>
+        <form id="formSocio" enctype="multipart/form-data" method="POST" action="http://localhost:3000/guardar-pdf">
+            <div class="form-group">
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" name="dni" required>
+            </div>
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" id="nombres" name="nombres" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+            </div>
+            <div class="form-group">
+                <label for="localidad">Selecciona una localidad:</label>
+                <select id="localidad" name="localidad" required>
+                    <option value="1">Casa Blanca</option>
+                    <option value="2">Sacsamarca</option>
+                    <option value="3">Tarmatambo</option>
+                    <option value="4">Palca</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="escritura">PDF Escritura:</label>
+                <input type="file" id="escritura" name="pdfEscritura" accept=".pdf" required>
+            </div>
+            <div class="form-group">
+                <label for="comprobante">PDF Comprobante:</label>
+                <input type="file" id="comprobante" name="pdfComprobante" accept=".pdf" required>
+            </div>
+            <div class="button-group">
+                <button type="submit">Guardar</button>
+                <button type="button" onclick="regresar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../controllers/createSocio.js"></script>
+</body>
+</html>
